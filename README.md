@@ -217,6 +217,9 @@ console.log(chooseStations(stations))
 ```
 
 ```
+
+[▲ Page Up](#Lighthouse-Labs---the-21-Day-Coding-Challenge)
+
 ---
 
 ## Challenge #7
@@ -227,6 +230,9 @@ console.log(chooseStations(stations))
 ```
 
 ```
+
+[▲ Page Up](#Lighthouse-Labs---the-21-Day-Coding-Challenge)
+
 ---
 
 ## Challenge #8
@@ -237,6 +243,9 @@ console.log(chooseStations(stations))
 ```
 
 ```
+
+[▲ Page Up](#Lighthouse-Labs---the-21-Day-Coding-Challenge)
+
 ---
 
 ## Challenge #9
@@ -247,6 +256,9 @@ console.log(chooseStations(stations))
 ```
 
 ```
+
+[▲ Page Up](#Lighthouse-Labs---the-21-Day-Coding-Challenge)
+
 ---
 
 ## Challenge #10
@@ -257,6 +269,9 @@ console.log(chooseStations(stations))
 ```
 
 ```
+
+[▲ Page Up](#Lighthouse-Labs---the-21-Day-Coding-Challenge)
+
 ---
 
 ## Challenge #11
@@ -267,6 +282,9 @@ console.log(chooseStations(stations))
 ```
 
 ```
+
+[▲ Page Up](#Lighthouse-Labs---the-21-Day-Coding-Challenge)
+
 ---
 
 ## Challenge #12
@@ -277,6 +295,9 @@ console.log(chooseStations(stations))
 ```
 
 ```
+
+[▲ Page Up](#Lighthouse-Labs---the-21-Day-Coding-Challenge)
+
 ---
 
 ## Challenge #13
@@ -287,6 +308,9 @@ console.log(chooseStations(stations))
 ```
 
 ```
+
+[▲ Page Up](#Lighthouse-Labs---the-21-Day-Coding-Challenge)
+
 ---
 
 ## Challenge #14
@@ -297,6 +321,9 @@ console.log(chooseStations(stations))
 ```
 
 ```
+
+[▲ Page Up](#Lighthouse-Labs---the-21-Day-Coding-Challenge)
+
 ---
 
 ## Challenge #15
@@ -307,6 +334,9 @@ console.log(chooseStations(stations))
 ```
 
 ```
+
+[▲ Page Up](#Lighthouse-Labs---the-21-Day-Coding-Challenge)
+
 ---
 
 ## Challenge #16
@@ -317,6 +347,9 @@ console.log(chooseStations(stations))
 ```
 
 ```
+
+[▲ Page Up](#Lighthouse-Labs---the-21-Day-Coding-Challenge)
+
 ---
 
 ## Challenge #17
@@ -327,6 +360,9 @@ console.log(chooseStations(stations))
 ```
 
 ```
+
+[▲ Page Up](#Lighthouse-Labs---the-21-Day-Coding-Challenge)
+
 ---
 
 ## Challenge #18
@@ -337,6 +373,9 @@ console.log(chooseStations(stations))
 ```
 
 ```
+
+[▲ Page Up](#Lighthouse-Labs---the-21-Day-Coding-Challenge)
+
 ---
 
 ## Challenge #19
@@ -347,6 +386,9 @@ console.log(chooseStations(stations))
 ```
 
 ```
+
+[▲ Page Up](#Lighthouse-Labs---the-21-Day-Coding-Challenge)
+
 ---
 
 ## Challenge #20
@@ -357,6 +399,9 @@ console.log(chooseStations(stations))
 ```
 
 ```
+
+[▲ Page Up](#Lighthouse-Labs---the-21-Day-Coding-Challenge)
+
 ---
 
 ## Challenge #21
@@ -367,5 +412,6 @@ console.log(chooseStations(stations))
 ```
 
 ```
+
 ---
 
