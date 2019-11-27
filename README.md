@@ -8,7 +8,7 @@ Given an array of volunteer names and an array of neighbourhood names,
 complete the _doorToDoor_ function so that it returns the number of neighbourhoods
 each volunteer should visit if the work of going door to door is split evenly amongst them.
 
-### Hint: 
+### Hint: `.length`
 We can use JavaScript's handy built-in `.length` method to get the length of each array! 
 This will help you figure out how many volunteers and how many neighbourhoods there are.
 ```
@@ -40,6 +40,9 @@ console.log(doorToDoor(neighbourhoods, volunteers))
 // 2
     
 ```
+
+[▲ Page Up](#Lighthouse-Labs---the-21-Day-Coding-Challenge)
+
 ---
 
 ## Challenge #2
@@ -54,7 +57,7 @@ When asked about the economy, the function should return "Time is money."
 When asked about transportation, the function should return "It's going to be a long road, so we better get moving."
 If you're asked about a topic that isn't in the list above, respond with a default statement. (For example, "QUACK!")
 
-### Hint: 
+### Hint:  `if-statements`
 
 We can use `if-statements` to return different responses depending on what topic is passed as a parameter.
 We may also want to look at `comparison operators` while we're at it.
@@ -80,6 +83,9 @@ interviewAnswer(topic)
 // Time is money.
 
 ```
+
+[▲ Page Up](#Lighthouse-Labs---the-21-Day-Coding-Challenge)
+
 ---
 
 ## Challenge #3
@@ -100,7 +106,7 @@ The second item in the arry votes[1] are the votes for Sally
 The third item in the array votes[2] are the votes for Beth
 For example in this array [0, 2, 1] there are 0 votes for Tim, 2 votes for Sally and 1 vote for Beth.
 
-### Hint: 
+### Hint: `++`
 
 We'll need to start with an `if` statement to determine who the vote is for. Once we know that we can use 
 the increment operator `++` to increase `votes[0]` for Tim, `votes[1]` for Sally or `votes[2]` for Beth.
@@ -129,26 +135,78 @@ const castVote = (name, votes) => {
 //      1  // Beth
 //    ]
 ```
+
+[▲ Page Up](#Lighthouse-Labs---the-21-Day-Coding-Challenge)
+
 ---
 
 ## Challenge #4
 
 ### Instructions:
 
-### Hint: 
+Complete the function _registerToVote(name, unregisteredVoters)_ that takes in the name of a newly registered voter and an array of names of those who have not yet registered to vote. Your function must return an array, with the newly registered voter's name removed.
+
+### Hint: `.filter`
+
+If we initialize a new empty array within our function, `let mailingList = []`, we can use a `for-loop` and an `if-statement` to push the right names into it.
+
+Or if we're feeling adventurous, let's take a look at JavaScript's `filter` function. You can see an example of how 
+to remove an item from an array using filter here.
+```
+const name = 'Bradley';
+const unregisteredVoters = ['Jake', 'Alanna', 'Bradley', 'Stephanie'];
+
+const registerToVote = (name, unregisteredVoters) => {
+
+ return unregisteredVoters.filter(item => item !== name)
+}
+
+// Output:
+// ['Jake', 'Alanna', 'Stephanie']
 ```
 
-```
+[▲ Page Up](#Lighthouse-Labs---the-21-Day-Coding-Challenge)
+
 ---
 
 ## Challenge #5
 
 ### Instructions:
 
-### Hint: 
+Complete the function chooseStations(stations) that takes in an array of possible voting stations, and then only returns the names of the stations that are appropriate.
+
+Your function will receive an array of stations, where each station itself is an array with a name, a capacity, and a venue type.
+
+In order for a station to be deemed appropriate, it must have a capacity of at least 20, and be a school or community centre.
+
+### Hint: `.push`
+
+You'll need to try out some new `comparison operators` for this. Take a look at how to do greater-than, not-equal, and logical-AND with JavaScript.
+
+Much like the previous challenge, one way we could solve this is by initializing a new array within our function (`let goodStations = []`) and `push` the stations that meet the requirements to it as we loop through them.
+```
+const stations = [
+    ['Big Bear Donair', 10, 'restaurant'],
+    ['Bright Lights Elementary', 50, 'school'],
+    ['Moose Mountain Community Centre', 45, 'community centre']
+];
+
+const chooseStations = (stations) => {
+    let appropriatedStations = [];
+    for (let station of stations){
+        if(( station[1] >= 20) && (station[2] === "school" || station[2] === "community centre" )){
+            appropriatedStations.push(station[0]); } 
+    }
+    return appropriatedStations 
+}
+console.log(chooseStations(stations))
+
+// Output:
+// ['Bright Lights Elementary', 'Moose Mountain Community Centre']
 ```
 
-```
+[▲ Page Up](#Lighthouse-Labs---the-21-Day-Coding-Challenge)
+
 ---
 
 ## Challenge #6
