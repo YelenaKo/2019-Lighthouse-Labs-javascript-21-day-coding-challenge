@@ -179,7 +179,7 @@ Your function will receive an array of stations, where each station itself is an
 
 In order for a station to be deemed appropriate, it must have a capacity of at least 20, and be a school or community centre.
 
-### Hint: `.push`
+### Hint: `for...of`, `.push`
 
 You'll need to try out some new `comparison operators` for this. Take a look at how to do greater-than, not-equal, and logical-AND with JavaScript.
 
@@ -213,8 +213,45 @@ console.log(chooseStations(stations))
 
 ### Instructions:
 
-### Hint: 
+Complete the function _voterTurnout()_, that will take in two arrays. The first array is a list of voter ids, and the second array is a list of voter signatures, which correspond to the voter ids. Our task here is to first check that each array have the same number of items and then confirm that each of the voter ids matches the corresponding voter signature.
+
+If the arrays do not contain the same number of items, then we know something is amiss and our function should _return false_. If they contain the same number of elements, then we should proceed to check if the two arrays are identical, meaning they contain the same names in the same order. If they are, our function should _return "All clear, we can count the votes!"_, if they are not it should -  _return "FRAUD!"_.
+
+### Hint: `compare two arrays`
+
+We need to determine if the two arrays are identical by comparing them to one another. First, we'll need to make sure they are the same length. We can do this by using `.length` and the strict inequality `!==` operator.
+
+Next, we'll need to loop through one of the arrays, comparing each item of one array to the same item in the second array using the index. You can a see step by step breakdown of how to compare two arrays [here](#https://gomakethings.com/how-to-check-if-two-arrays-are-equal-with-vanilla-js/)
 ```
+   const voter_signatures = [
+        'Bill Billiamson',
+        'Kate Etak',
+        'Brandon Brandonus',
+        'Fake McFakerson',
+        'Jane Janesford'
+      ]
+
+      const voter_ids = [
+        'Bill Billiamson',
+        'Kate Etak',
+        'Brandon Brandonus',
+        'Simon Simonson',
+        'Jane Janesford'
+      ]
+
+const voterTurnout = (voter_signatures, voter_ids) => {
+
+  if(voter_signatures.length !== voter_ids.length) return false
+  else{
+      for (let i = 0; voter_signatures.length > i; i++) {
+          if (voter_signatures[i] !== voter_ids[i]) return "FRAUD!"
+      }
+  }  
+  return "All clear, we can count the votes!"
+}
+
+//Output:
+//FRAUD!
 
 ```
 
@@ -226,8 +263,47 @@ console.log(chooseStations(stations))
 
 ### Instructions:
 
-### Hint: 
+We need to go through the survey responses to see what your constituents would like you to focus on over the course of your term in office. The array that you are given contains many phrases and words pulled from a number of interviews. We only want to focus on the following three key phrases: "smart city", "arts funding", and "transportation".
+
+Our _termTopics_ function needs to count how many times each of those topics was mentioned in the surveys, and then return an array with the number of mentions in the following order: _smart city, arts funding_, and then _transportation_.
+
+### Hint: `for...of `
+
+Similar to yesterday's question, we may need a for-loop to go through each entry in the interview responses.
+
+Whenever we need to decide which value to increase, we could use an if-statement or switch statement to make that decision.
 ```
+const interviews = [
+    'smart city', 
+    'rebuild the lighthouse', 
+    'arts funding', 
+    'transportation',
+    'arts funding', 
+    'rebuild the lighthouse', 
+    'sports funding', 
+    'tax cuts', 
+    'smart city',
+    'arts funding', 
+    'smart city'
+]
+const termTopics = (interviews) => {
+    let keyPhrases = [ 0, 0, 0];
+
+    for (let phrase of interviews){
+        if (phrase === "smart city") keyPhrases[0] ++
+        else if (phrase === "arts funding") keyPhrases[1] ++
+        else if (phrase === "transportation") keyPhrases[2] ++
+    }
+    return keyPhrases
+}
+console.log(termTopics(interviews))
+
+// Output:
+//    [
+//      3, // smart city
+//      3, // arts funding
+//      1  // transportation
+//    ]  
 
 ```
 
@@ -239,9 +315,35 @@ console.log(chooseStations(stations))
 
 ### Instructions:
 
-### Hint: 
-```
+We need to complete a function called _smartGarbage(trash, bins)_, which will be responsible for increasing the garbage count for waste, recycling, or compost depending on what trash is submitted. Our function will receive two arguments. The first argument, trash, is a string that will tell our function what type of item is being submitted. The second argument, bins, is an object containing three properties (waste, recycling, and compost), which hold some numerical value. Our function must increase the correct value in the bins object, and the return the newly updated object.
 
+### Hint: `object.property`
+
+This is the first time we've encountered objects! We will need to access the proper value in the bins object using the trash as the key. If you're having trouble with this, take a look online to see how to use square bracket notation to access values in a JavaScript object.
+
+Note: When we’re referencing a variable in the bracket notation, we can skip the quotes.
+```
+const bins = {
+  waste: 4,
+  recycling: 2,
+  compost: 5
+}
+const trash = 'recycling'
+
+const smartGarbage = (trash, bins) => {
+  if (trash === "waste") bins.waste++
+  else if (trash === "recycling") bins.recycling++
+  else if (trash === "compost") bins.compost++
+  return bins
+}
+console.log(smartGarbage(trash, bins))
+
+// Output:
+// {
+//        waste: 4,
+//        recycling: 3,
+//        compost: 5
+//  }
 ```
 
 [▲ Page Up](#Lighthouse-Labs---the-21-Day-Coding-Challenge)
@@ -252,8 +354,45 @@ console.log(chooseStations(stations))
 
 ### Instructions:
 
-### Hint: 
+Complete the function, _carPassing(cars, speed)_, that takes in an array of car objects, and the speed of a car as it passes the sensor. This function should create a new object with with a property called speed, and another property called _time_ and add it to the cars array. We can retrieve the current time, for setting the time property, by using the _Date.now()_ function, which is built into JavaScript!
+
+Our function should return an array that includes all of the elements in cars as well as our new element.
+
+### Hint: `Creating objects using object literal syntax`, `.push`
+
+We can define and create a new object with an object literal. You can check out the first list item [here](#https://www.freecodecamp.org/news/a-complete-guide-to-creating-objects-in-javascript-b0e2450655e8/) as an example.
+
+Like in previous challenges, we may need to use JavaScript's handy _push()_ method to add our new object to the cars array.
 ```
+const cars = [
+  {
+    time: 1568329654807,
+    speed: 40,
+  },
+  {
+    time: 1568329821632,
+    speed: 42,
+  },
+  {
+    time: 1568331115463,
+    speed: 35
+  }
+]
+
+const speed = 38
+
+const carPassing = (cars, speed) => {
+  let newObj = { time:Date.now(), speed:speed }
+  cars.push(newObj)
+  return cars
+}
+console.log(carPassing(cars, speed))
+
+// Output:
+[ { time: 1568329654807, speed: 40 },
+  { time: 1568329821632, speed: 42 },
+  { time: 1568331115463, speed: 35 },
+  { time: 1574917288256, speed: 38 } ]
 
 ```
 
@@ -265,9 +404,50 @@ console.log(chooseStations(stations))
 
 ### Instructions:
 
-### Hint: 
-```
+We need to write a function called _whereCanIPark()_ that returns the coordinates of an available parking spot for the vehicle, or returns false if there is no available spot. Our function receives an array of arrays representing parking spots, and a string with type of the vehicle that is looking for a parking spot.
 
+There are three kinds of possible vehicles: regular cars, small cars, and motorcycles. Regular cars can only park in R spots. Small cars can park in R or S spots. Motorcycles can park in R, S, or M spots. In the array of parking spots, spots are written in both lower-case and upper-case. An upper-case letter means that the particular spot is AVAILABLE, while lower-case letters mean that the spot is UNAVAILABLE.
+
+Our function must return an array with the coordinates of the spot as an [X, Y] pair. See the example input and output below for an illustration.
+
+Note: There may be multiple available spots for a particular vehicle. It does not matter which spot your function chooses, as long as the spot is available. And if there are no available spots, remember to return false.
+
+### Hint: `two for-loops`
+
+To go through a single array, we can use a single for-loop. To go through every element in an array of arrays, we can use two for-loops: one nested within the other.
+```
+const spots = [
+// COLUMNS ARE X
+//    0    1    2    3    4    5
+  ['s', 's', 's', 'S', 'R', 'M'], // 0 ROWS ARE Y
+  ['s', 'M', 's', 'S', 'R', 'M'], // 1
+  ['s', 'M', 's', 'S', 'R', 'm'], // 2
+  ['S', 'r', 's', 'm', 'R', 'M'], // 3
+  ['S', 'r', 's', 'm', 'R', 'M'], // 4
+  ['S', 'r', 'S', 'M', 'M', 'S'], // 5
+]
+
+const vehicle = 'regular' // possible options are 'regular', 'small', or 'motorcycle'
+
+
+const whereCanIPark = (spots, vehicle) => {
+  // Code here!
+  for (let y = 0; y < spots.length; y++){
+    for (let x = 0; x < spots[y].length; x++){
+      
+      const spot = spots[y][x]
+      
+      if (vehicle === "regular" && spot === "R") return [x, y] 
+      else if (vehicle === "small" && (spot === "R" || spot === "S")) return [x, y] 
+      else if (vehicle === "motorcycle" && (spot === "R" || spot === "S" || spot === "M")) return [x, y]
+      
+    }
+  }
+  return false; 
+}
+
+// Output:
+// [4, 0]
 ```
 
 [▲ Page Up](#Lighthouse-Labs---the-21-Day-Coding-Challenge)
