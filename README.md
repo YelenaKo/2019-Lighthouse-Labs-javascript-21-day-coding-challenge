@@ -458,9 +458,39 @@ const whereCanIPark = (spots, vehicle) => {
 
 ### Instructions:
 
-### Hint: 
-```
+For this challenge, we'll implement a function called _busTimes()_. This function will calculate the arrival time for a collection of busses based on their current speed and distance from the stop. It will receive an object called _buses_, which contains a series of objects for each bus, with the distance of the bus and the speed that the bus is traveling at. Our function should return a new object that shows how long until each bus arrives at the stop.
 
+### Hint: `for...in` 
+
+We'll need to loop through each of the buses in the buses object. Looping through objects can be done with a for...in loop!
+
+We can calculate the arrival time of the bus by dividing it's distance by it's speed.
+```
+const buses = {
+  pickadilly: {
+      distance: 10,
+      speed: 5
+  },
+  uptown: {
+      distance: 13,
+      speed: 10
+  }
+}
+ 
+const busTimes = buses => {
+  const time = {}
+  for (const i in buses){
+     time[i] = buses[i].distance / buses[i].speed
+  }
+  return time
+}
+console.log(busTimes(buses))
+
+// Output:
+//    {
+//      pickadilly: 2,
+//      uptown: 1.3
+//    }
 ```
 
 [▲ Page Up](#Lighthouse-Labs---the-21-Day-Coding-Challenge)
@@ -471,9 +501,39 @@ const whereCanIPark = (spots, vehicle) => {
 
 ### Instructions:
 
-### Hint: 
-```
+For this challenge we will implement a function called _checkAir()_, which will check a collection of air samples. The function will take in two arguments. The first argument is an array of strings, where each string represents a small air sample that is either clean or dirty. The second argument is a number representing the highest acceptable amount of dirty samples. For example, a threshold of 0.4 means that there must be less than 40% of total samples classified as dirty for our air to be considered clean. Our function must return Polluted if there are too many dirty air samples, or Clean if the proportion of dirty samples is below the threshold.
 
+### Hint: `for...in` `++` or `.filter`
+
+Not sure where to get started? It might be useful to start by creating a variable to keep track of how many dirty samples we find as we loop through the array of samples. We can increment or add to this number using the ++ operator.
+
+Once you know how many dirty samples there are, we just need to do some simple math to determine if it exceeds the threshold.
+```
+const samples = ['clean', 'clean', 'dirty', 'clean', 'dirty', 'clean', 'clean', 'dirty', 'clean', 'dirty']
+const threshold = 0.3
+
+const checkAir = function (samples, threshold) {
+    let counter = 0;
+    for (const i of samples) if (i === "dirty") counter++ 
+    return (counter / samples.length > threshold ? "Polluted " : "Clean" )
+}
+console.log(checkAir(samples, threshold)) 
+
+// Output:
+// Polluted
+```
+or
+```
+const samples = ['clean', 'clean', 'dirty', 'clean', 'dirty', 'clean', 'clean', 'dirty', 'clean', 'dirty']
+const threshold = 0.3
+
+const checkAir = function (samples, threshold) {
+    return (( samples.filter( i => i === "dirty").length / samples.length < threshold ) ? "Clean" : "Polluted");
+}
+console.log(checkAir(samples, threshold))
+
+// Output:
+// Polluted
 ```
 
 [▲ Page Up](#Lighthouse-Labs---the-21-Day-Coding-Challenge)
@@ -484,9 +544,93 @@ const whereCanIPark = (spots, vehicle) => {
 
 ### Instructions:
 
-### Hint: 
-```
+We will be implementing this using three functions.
 
+The first two functions will receive an array of objects that represent street lights which may be on or off.
+
+❄️ Our first function, lightsOn, must set all of the lights to on and then return the array of lights.
+
+❄️ The second function, lightsOff, must set all the lights to "off" and then return the array of lights.
+
+❄️ The third function, toggleLights, will receive an array of many street lights, as well as a boolean value lightsAreOn which tells you whether or not all the lights are currently on. If lightsAreOn is true, your function should turn all of the lights off. If lightsAreOn is false, your function should turn all of the lights on.
+
+### Hint: `.map`
+
+Lucky for us, we can call any of the functions that we have made before toggleLights. Can you see where we might want to call our lightsOn or lightsOff functions?
+```
+// Input:
+// for lightsOff() function
+
+const lights = [
+    {id: 1, on: true},
+    {id: 2, on: true},
+    {id: 3, on: true}, 
+    {id: 4, on: true},
+    {id: 5, on: true}
+]
+
+ // for lightsOn() function
+ /*
+ const lights = [
+    {id: 1, on: false},
+    {id: 2, on: false},
+    {id: 3, on: false}, 
+    {id: 4, on: false},
+    {id: 5, on: false}
+]   
+*/
+// for toggleLights() function
+/*
+const lights = [
+    {id: 1, on: true},
+    {id: 2, on: true},
+    {id: 3, on: true}, 
+    {id: 4, on: true},
+    {id: 5, on: true}
+]
+const lightsAreOn = true
+*/
+
+const lightsOn = function(lights) {
+  lights.map(l => !l.on ? l.on = true : null);
+  return lights;
+}
+
+const lightsOff = function(lights) {
+  lights.map(l => l.on ? l.on = false : null);
+  return lights;
+}
+
+const toggleLights = function(lights, lightsAreOn) {
+  lightsAreOn ? lightsOff(lights) : lightsOn(lights);
+  return lights;
+}
+
+// Output:
+// for lightsOff() function
+[
+    {id: 1, on: false},
+    {id: 2, on: false},
+    {id: 3, on: false}, 
+    {id: 4, on: false},
+    {id: 5, on: false}
+]  
+// for lightsOn() function
+[
+    {id: 1, on: true},
+    {id: 2, on: true},
+    {id: 3, on: true}, 
+    {id: 4, on: true},
+    {id: 5, on: true}
+]
+// for toggleLights() function
+[
+    {id: 1, on: false},
+    {id: 2, on: false},
+    {id: 3, on: false}, 
+    {id: 4, on: false},
+    {id: 5, on: false}
+] 
 ```
 
 [▲ Page Up](#Lighthouse-Labs---the-21-Day-Coding-Challenge)
