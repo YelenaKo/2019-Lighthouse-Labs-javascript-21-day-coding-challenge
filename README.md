@@ -559,8 +559,16 @@ The first two functions will receive an array of objects that represent street l
 Lucky for us, we can call any of the functions that we have made before toggleLights. Can you see where we might want to call our lightsOn or lightsOff functions?
 ```
 // Input:
+// for lightsOn() function
+const lights = [
+    {id: 1, on: false},
+    {id: 2, on: false},
+    {id: 3, on: false}, 
+    {id: 4, on: false},
+    {id: 5, on: false}
+]   
 // for lightsOff() function
-
+/*
 const lights = [
     {id: 1, on: true},
     {id: 2, on: true},
@@ -568,16 +576,6 @@ const lights = [
     {id: 4, on: true},
     {id: 5, on: true}
 ]
-
- // for lightsOn() function
- /*
- const lights = [
-    {id: 1, on: false},
-    {id: 2, on: false},
-    {id: 3, on: false}, 
-    {id: 4, on: false},
-    {id: 5, on: false}
-]   
 */
 // for toggleLights() function
 /*
@@ -611,14 +609,6 @@ console.log(lightsOff(lights))
 console.log(toggleLights(lights, lightsAreOn))
 
 // Output:
-// for lightsOff() function
-[
-    {id: 1, on: false},
-    {id: 2, on: false},
-    {id: 3, on: false}, 
-    {id: 4, on: false},
-    {id: 5, on: false}
-]  
 // for lightsOn() function
 [
     {id: 1, on: true},
@@ -627,6 +617,14 @@ console.log(toggleLights(lights, lightsAreOn))
     {id: 4, on: true},
     {id: 5, on: true}
 ]
+// for lightsOff() function
+[
+    {id: 1, on: false},
+    {id: 2, on: false},
+    {id: 3, on: false}, 
+    {id: 4, on: false},
+    {id: 5, on: false}
+]  
 // for toggleLights() function
 [
     {id: 1, on: false},
@@ -645,9 +643,27 @@ console.log(toggleLights(lights, lightsAreOn))
 
 ### Instructions:
 
-### Hint: 
-```
+We'll be implementing a function called dynamicPricing(), which will return the cost of a particular trip given the number of people on the bus, and the distance traveled by the passenger. This function receives two numbers: numberOfPeople and distanceTraveled.
 
+The base ticket price is $1. Passengers will be charged $0.25 per kilometer. If there are 30 or more people on the bus, there should be $0.25 added to the total.
+
+The value that your functions returns must be a string, formatted as such: $4.25. Your values must be shown to two decimal points of precision.
+
+### Hint: `.toFixed(n)`
+
+There is a built-in JavaScript function called .toFixed, which will be useful here to help us round our result before returning it! Lucky for us, it also automatically returns a string.
+```
+const numberOfPeople = 15
+const distanceTraveled = 10
+
+const dynamicPricing = (numberOfPeople, distanceTraveled) => {
+    const baseTicketPrice = 1 + distanceTraveled * 0.25
+    return( numberOfPeople >= 30 ? "$"+(baseTicketPrice + 0.25).toFixed(2) : "$"+baseTicketPrice.toFixed(2)) 
+}
+console.log(dynamicPricing(numberOfPeople, distanceTraveled))
+
+// Output:
+// $3.50
 ```
 
 [▲ Page Up](#Lighthouse-Labs---the-21-Day-Coding-Challenge)
@@ -658,9 +674,47 @@ console.log(toggleLights(lights, lightsAreOn))
 
 ### Instructions:
 
-### Hint: 
+For this challenge you'll have to implement a function called finalPosition(), which will calculate the position of the parade based on an array of directional moves. The parade will move on an X-Y grid like the following
 ```
+                  ↑
+                  3
+                  |
+                  2
+                  |
+                  1
+                  |
+← -4— -3— -2— -1— 0 — 1 — 2 — 3 — 4 →
+                  |
+                 -1
+                  |
+                 -2
+                  |
+                 -3
+                  ↓
+```
+Your function will receive an array of moves, which are strings that say either north, south, west, or east, these represent the parade moving in a particular direction by a single space on the grid. By looking at the path that the parade moves in, your function should calculate and then return an array representing the position of the parade after completing all of the moves. The first element of the array should be the X position, and the second element of the array should be the Y position. The parade begins at `[0,0]`.
 
+### Hint: 
+
+One way to approach this is to start with an array at [0, 0], and then update the appropriate values while looping through the moves. See if you can get the final X value first!
+```
+const moves = ['north', 'north', 'west', 'west', 'north', 'east','north']  
+
+const finalPosition = (moves) => {
+    let position = [0, 0]
+
+    for (let i of moves){
+        if (i === "west")  position[0] --
+        else if (i === "east")  position[0] ++
+        else if (i === "north")  position[1] ++
+        else  position[1] --
+    }
+    return  position   
+}
+console.log(finalPosition(moves))
+
+// Output:
+// [-1, 4]
 ```
 
 [▲ Page Up](#Lighthouse-Labs---the-21-Day-Coding-Challenge)
@@ -671,9 +725,29 @@ console.log(toggleLights(lights, lightsAreOn))
 
 ### Instructions:
 
-### Hint: 
-```
+We'll complete a function festivalColours() that calculates the split complementary colours for a given colour. We'll be working with a special colour system called HSL, which stands for Hue, Saturation, and Lightness.
 
+Here's an example of an HSL colour picker.
+
+The function will receive an H(Hue) value, and must return an array of the values for the two split complementary colours. The smaller number should be the first element, and the larger number should be the second element.
+
+You can take a peek at this website for the formula you'll need to use to calculate the split complementary colours.
+
+### Hint: `.sort()` (alphabetical) , `.sort((a, b)=> a - b)` (numeric)
+
+Still not sure what a split-complementary colour scheme is? A split-complementary colour scheme is a three-color combination that consists of a base color and two colors that are 150 degrees and 210 degrees apart from the base respectively.
+```
+const color1 = 100
+
+const festivalColours = color1 => {
+    let h1 = color1 + 150
+    let h2 = color1 + 210
+    return([h1, h2].sort((a, b)=> a - b))
+}
+console.log(festivalColours(color1))
+
+// Output:
+// [250, 310]
 ```
 
 [▲ Page Up](#Lighthouse-Labs---the-21-Day-Coding-Challenge)
