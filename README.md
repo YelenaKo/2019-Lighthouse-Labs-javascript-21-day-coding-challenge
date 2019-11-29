@@ -606,6 +606,10 @@ const toggleLights = function(lights, lightsAreOn) {
   return lights;
 }
 
+console.log(lightsOn(lights))
+console.log(lightsOff(lights))
+console.log(toggleLights(lights, lightsAreOn))
+
 // Output:
 // for lightsOff() function
 [
