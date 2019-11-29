@@ -1,5 +1,27 @@
 # _Lighthouse Labs - the 21-Day Coding Challenge_
 
+* _[Challenge #1 `.length`](#challenge-1)_
+* _[Challenge #2 `if-statements`](#challenge-2)_
+* _[Challenge #3 `++`](#challenge-3)_
+* _[Challenge #4 `.filter`](#challenge-4)_
+* _[Challenge #5 `for...of`, `.push`](#challenge-5)_
+* _[Challenge #6 `compare two arrays`](#challenge-6)_
+* _[Challenge #7 `for...of`](#challenge-7)_
+* _[Challenge #8 `object.property`](#challenge-8)_
+* _[Challenge #9 `creating object`, `.push`](#challenge-9)_
+* _[Challenge #10 `two for-loops`](#challenge-10)_
+* _[Challenge #11 `for...in`](#challenge-11)_
+* _[Challenge #12 `for...in`, `++` or `.filter`](#challenge-12)_
+* _[Challenge #13 `.map`](#challenge-13)_
+* _[Challenge #14 `.toFixed(n)`](#challenge-14)_
+* _[Challenge #15 ` calculating the position`](#challenge-15)_
+* _[Challenge #16 `.sort()`, `.sort((a, b)=> a - b)`](#challenge-16)_
+* _[Challenge #17 ``](#challenge-17)_
+* _[Challenge #18 ``](#challenge-18)_
+* _[Challenge #19 ``](#challenge-19)_
+* _[Challenge #20 ``](#challenge-20)_
+* _[Challenge #21 ``](#challenge-21)_
+
 ## Challenge #1
 
 ### Instructions:
