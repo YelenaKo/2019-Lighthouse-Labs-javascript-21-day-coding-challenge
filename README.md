@@ -16,7 +16,7 @@
 * _[Challenge #14 `.toFixed(n)`](#challenge-14)_
 * _[Challenge #15 ` calculating the position`](#challenge-15)_
 * _[Challenge #16 `.sort()`, `.sort((a, b)=> a - b)`](#challenge-16)_
-* _[Challenge #17 ``](#challenge-17)_
+* _[Challenge #17 `.reduce`, `arr.reduce((a, b) => (a > b) ? a : b)`](#challenge-17)_
 * _[Challenge #18 ``](#challenge-18)_
 * _[Challenge #19 ``](#challenge-19)_
 * _[Challenge #20 ``](#challenge-20)_
@@ -780,9 +780,45 @@ console.log(festivalColours(color1))
 
 ### Instructions:
 
-### Hint: 
-```
+For this challenge, we'll need to implement a function called _judgeVegetable()_ that will decide which vegetable is best based on a given judging characteristic. Our function will receive two parameters: a list of veggies(as an array of objects), and a characteristic to judge the veggies by (in the case of a tomato, either redness or plumpness).
 
+Our function must return the name of the person who submitted (vegetables.submitter) the vegetable with the highest ranking in the provided category.
+
+### Hint: `array.reduce()`, 
+
+### `array.reduce((a, b) => (a > b) ? a : b)` - _Getting the max num of array_ 
+
+This problem involves looping through an array of objects and determining which object has the highest rating in a given category. Solving this could include a for-loop to loop through the vegetables, comparing each by the given metric to find the highest one.
+
+One way to start might be by initializing a variable called bestVeggie as vegetables[0] and then comparing each vegetable within our loop to the bestVeggie to determine if it is greater or not. If it is greater, then we've found ourselves a new bestVeggie.
+```
+const vegetables = [
+    {
+        submitter: 'Old Man Franklin',
+        redness: 10,
+        plumpness: 5
+    },
+    {
+        submitter: 'Sally Tomato-Grower',
+        redness: 2,
+        plumpness: 8
+    },
+    {
+        submitter: 'Hamid Hamidson',
+        redness: 4,
+        plumpness: 3
+    }
+]
+
+const metric = 'redness'
+
+const judgeVegetable = (vegetables, metric) => {
+   return( vegetables.reduce((bestVeggie , other) => other[metric] > bestVeggie[metric] ? other : bestVeggie).submitter )
+}  
+console.log(judgeVegetable(vegetables, metric))
+
+// Output:
+// Old Man Franklin
 ```
 
 [▲ Page Up](#Lighthouse-Labs---the-21-Day-Coding-Challenge)
