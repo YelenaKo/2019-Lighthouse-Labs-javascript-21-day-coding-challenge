@@ -915,18 +915,15 @@ const pumpkinSpice = money => {
   let treats = {
     pie:{
       cost: 5, 
-      weight: 30 ,
-      max: 0
+      weight: 30 
     } ,
     latte:{
       cost: 3, 
-      weight: 15,
-      max: 0
+      weight: 15
     }, 
     macaron:{
       cost: 1, 
-      weight: 3,
-      max: 0
+      weight: 3
     } 
   }
   
