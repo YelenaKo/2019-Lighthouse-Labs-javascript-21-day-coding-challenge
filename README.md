@@ -17,8 +17,8 @@
 * _[Challenge #15 ` calculating the position`](#challenge-15)_
 * _[Challenge #16 `.sort()`, `.sort((a, b)=> a - b)`](#challenge-16)_
 * _[Challenge #17 `.reduce`, `arr.reduce((a, b) => (a > b) ? a : b)`](#challenge-17)_
-* _[Challenge #18 ``](#challenge-18)_
-* _[Challenge #19 ``](#challenge-19)_
+* _[Challenge #18 `Object.entries(obj)`, `.map([a , b])`](#challenge-18)_
+* _[Challenge #19 `Math.floor`, `working with an object`](#challenge-19)_
 * _[Challenge #20 ``](#challenge-20)_
 * _[Challenge #21 ``](#challenge-21)_
 
@@ -829,9 +829,51 @@ console.log(judgeVegetable(vegetables, metric))
 
 ### Instructions:
 
-### Hint: 
-```
+Our first function, bestOdds(), will receive two parameters. The first parameter will be an array of strings that are either red, green, or blue, representing the tickets that a particular person has. The second parameter is an object that shows how many entries there currently are for each raffle. By looking at the tickets that the particular person has, your function should return a string that lets the person know which raffle they have the highest chance of winning. The format of the response should be as follows (without the square brackets): "You have the best odds of winning the [COLOUR] raffle."
 
+While we could do this all within the bestOdds() function, we want to keep our code DRY, so we will also need to complete a helper function. This helper function countTickets() will be called from within bestOdds() and receive the array of strings that are either red, green, or blue. The function will count how many of each string there are, and then return an object with the individual counts.
+
+### Hint: `Object.entries(obj)`, `.map([a , b])`,
+
+### `.reduce(( [cA, a], [cB, b]) => a > b ? [cA, a] : [B, b] )`
+
+Make sure to call the countTickets(tickets) function from within the bestOdds() function.
+
+Each ticket count can start at 0. We can start our countTickets() function by creating an object that sets the counts for red, green, and blue to 0.
+
+Because we need to go through the tickets array to look at each ticket, we can use a for-loop to traverse through the array.
+```
+const tickets = [
+  'red',
+  'red',
+  'green',
+  'blue',
+  'green'
+]
+
+const raffleEntries = {
+  red: 10,
+  green: 30,
+  blue: 15
+}
+
+const countTickets = (tickets) => {
+  let counts = {red:0, green:0, blue:0};
+  tickets.map(i => counts[i]++)
+  return counts;
+}
+
+const bestOdds = (tickets, raffleEntries) => {
+  const bestOddsColor = Object.entries(countTickets(tickets))
+  .map(([color , num]) => [color, num / raffleEntries[color]])
+  .reduce(( [colorA, a], [colorB, b]) => a > b ? [colorA, a] : [colorB, b] )[0];
+  
+  return `You have the best odds of winning the ${bestOddsColor} raffle.`;
+}
+console.log(bestOdds(tickets, raffleEntries))
+
+// Output:
+// "You have the best odds of winning the red raffle."
 ```
 
 [▲ Page Up](#Lighthouse-Labs---the-21-Day-Coding-Challenge)
@@ -842,8 +884,67 @@ console.log(judgeVegetable(vegetables, metric))
 
 ### Instructions:
 
-### Hint: 
+This is the Codeville Fall Festival, and nothing says fall more than pumpkin spice. At this year's festival, there will be three ways for the people of Codeville to get their pumpkin spice fix:
+
+Pumpkin pie
+Pumpkin spice lattes
+Pumpkin spice macarons
+
+Each item differs in both cost and the grams of pumpkin spice per serving. To help festival-goers maximize their pumpkin spice consumption, help them determine the maximum amount of pumpkin spice they can ingest with the amount of money they are bringing to the festival.
+
+A slice of pumpkin pie costs $5 each, and include a whopping 30g of pumpkin spice
+Pumpkin spice lattes cost $3 each, and include 15g of pumpkin spice
+Pumpkin spice macarons cost $1 each, and include 3g of pumpkin spice
+
+We need to write a function, pumpkinSpice(money) that will take in a number, or how much the festival-goer has to spend on treats, and return an array with the 4 elements as outlined below:
+
+The first element should represent how many slices of pumpkin pie the client can buy
+The second element should represent how many pumpkin spice lattes the client can buy
+The third element should represent how many pumpkin spice macarons the client can buy
+The fourth element should represent how many grams of pumpkin spice the client will be buying
+
+Our function should start by calculating how many slices of pumpkin pie we can buy. Then, we'll want to use the remaining money to do the calculations for the lattes, followed lastly by the macarons.
+
+### Hint: `Math.floor`, `working with an object`
+
+We can use a while loop to executes a specified statement as long as the test condition evaluates to true. In this case, as long as we have more than $5, we can continue to buy pumpkin pie.
 ```
+const money = 9
+
+const pumpkinSpice = money => {
+  let treats = {
+    pie:{
+      cost: 5, 
+      weight: 30 ,
+      max: 0
+    } ,
+    latte:{
+      cost: 3, 
+      weight: 15,
+      max: 0
+    }, 
+    macaron:{
+      cost: 1, 
+      weight: 3,
+      max: 0
+    } 
+  }
+  
+let piesMax = Math.floor( money / treats.pie.cost )
+let lattesMax = Math.floor( (money - piesMax*treats.pie.cost) / treats.latte.cost )
+let macaronMax = Math.floor( (money - piesMax*treats.pie.cost - lattesMax*treats.latte.cost) / treats.macaron.cost )
+
+let spice = piesMax * treats.pie.weight + lattesMax * treats.latte.weight + macaronMax * treats.macaron.weight
+    
+let treatsMax = [piesMax, lattesMax, macaronMax, spice]
+
+return treatsMax
+}
+
+console.log(pumpkinSpice(money))
+
+// Output:
+// [1, 1, 1, 48]
 
 ```
 
