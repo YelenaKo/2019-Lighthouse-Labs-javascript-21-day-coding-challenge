@@ -16,11 +16,11 @@
 * _[Challenge #14 `.toFixed(n)`](#challenge-14)_
 * _[Challenge #15 ` calculating the position`](#challenge-15)_
 * _[Challenge #16 `.sort()`, `.sort((a, b)=> a - b)`](#challenge-16)_
-* _[Challenge #17 `.reduce`, `arr.reduce((a, b) => (a > b) ? a : b)`-(Sorting)](#challenge-17)_
+* _[Challenge #17 `.reduce`, `arr.reduce((a, b) => (a > b) ? a : b)-(Sorting)`](#challenge-17)_
 * _[Challenge #18 `Object.entries(obj)`, `.map([a , b])`](#challenge-18)_
 * _[Challenge #19 `Math.floor`, `working with an object`](#challenge-19)_
-* _[Challenge #20 `.map()`, `.reduce((a, b) => a + b, 0))`-(Sum all the values of an array)](#challenge-20)_
-* _[Challenge #21 ``](#challenge-21)_
+* _[Challenge #20 `.map()`, `.reduce((a, b) => a + b, 0))-(Sum all the values of an array)`](#challenge-20)_
+* _[Challenge #21 `destructuring - arr.find( ({ a }) => a === 'b' )`, `.includes() -  return true or false`](#challenge-21)_
 
 ## Challenge #1
 
@@ -1053,10 +1053,71 @@ console.log(totalVolume(duck))                        // 272318.2571833333
 
 ### Instructions:
 
+The town festival is tomorrow and the organizers have only just realized that they've booked two bakeries to cater desserts, but only have one kitchen available. Instead of just choosing one bakery, let's help them figure out a way to work together.
+
+Both of bakeries have a specialty, so they have each have a stock of specific ingredients.
+
+Lucky for the festival organizers, we've found a recipe book in the town library with TONS of fusion recipes, unfortunately it's 1000 of pages long and we don't have much time. Let's write a function that helps determine which recipes match the ingredients that both bakeries have in stock.
+
+We need to complete a function called chooseRecipe(), which will receive three parameters:
+
+1. An array of ingredients in stock at Bakery A
+2. An array of ingredients in stock at Bakery B
+3. An array of recipe objects. Each recipe has a name property(string) and an ingredient property(array)
+We are limiting our search to two ingredient recipes. We want to find a recipe that utilizes one ingredient from Bakery A and one from Bakery B.
+
+Our chooseRecipe() function should return the name of the correct recipe.
+
+Note: In the tests there will always be a single correct answer, and you will NOT need to consider special cases. For example, you do NOT need to worry about cases where one bakery has BOTH the ingredients for a recipe.
+
 ### Hint: 
+
+###  ` .includes() -  return true or false`, `.find()`
+
 ```
+Find an object in an array by one of its properties and destructuring it
+
+const arr =[{a:b, c:d}, {a:j, c:o}]; 
+arr.find( ({ a }) => a === b )  
+
+//output=> {a:b, c:d}
+```
+
+
+
+This one is a doozy! We might want to start by creating a helper function called ingredientCheck() that will take in one bakery at a time, and as well as the recipes.ingredients array to check if the given bakery possesses any of the ingredients from that recipe.
+
+We can use JavaScript's handy built in .includes method to easily check whether an array contains a specific value.
+```
+const bakeryA = ['saffron', 'eggs', 'tomato paste', 'coconut', 'custard']
+const bakeryB = ['milk', 'butter', 'cream cheese']
+const recipes = [
+    {
+        name: 'Coconut Sponge Cake',
+        ingredients: ['coconut', 'cake base']
+    },
+    {
+        name: 'Persian Cheesecake',
+        ingredients: ['saffron', 'cream cheese']
+    },
+    {
+        name: 'Custard Surprise',
+        ingredients: ['custard', 'ground beef']
+    }
+]
+
+const chooseRecipe = function(bakeryA, bakeryB, recipes) {
+    return( recipes.find( ({ingredients}) =>
+        bakeryA.includes(ingredients[0]) && bakeryB.includes(ingredients[1]) || 
+        bakeryA.includes(ingredients[1]) && bakeryB.includes(ingredients[0])).name)
+}
+console.log(chooseRecipe(bakeryA, bakeryB, recipes))     
+
+// Output:
+// Persian Cheesecake
 
 ```
 
 ---
 
+[▲ Page Up](#Lighthouse-Labs---the-21-Day-Coding-Challenge)
