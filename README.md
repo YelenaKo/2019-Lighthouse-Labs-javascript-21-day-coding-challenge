@@ -16,10 +16,10 @@
 * _[Challenge #14 `.toFixed(n)`](#challenge-14)_
 * _[Challenge #15 ` calculating the position`](#challenge-15)_
 * _[Challenge #16 `.sort()`, `.sort((a, b)=> a - b)`](#challenge-16)_
-* _[Challenge #17 `.reduce`, `arr.reduce((a, b) => (a > b) ? a : b)`](#challenge-17)_
+* _[Challenge #17 `.reduce`, `arr.reduce((a, b) => (a > b) ? a : b)`-(Sorting)](#challenge-17)_
 * _[Challenge #18 `Object.entries(obj)`, `.map([a , b])`](#challenge-18)_
 * _[Challenge #19 `Math.floor`, `working with an object`](#challenge-19)_
-* _[Challenge #20 ``](#challenge-20)_
+* _[Challenge #20 `.map()`, `.reduce((a, b) => a + b, 0))`-(Sum all the values of an array)](#challenge-20)_
 * _[Challenge #21 ``](#challenge-21)_
 
 ## Challenge #1
@@ -953,8 +953,95 @@ console.log(pumpkinSpice(money))
 
 ### Instructions:
 
-### Hint: 
+There's a new attraction at this year's town festival. The organizers have decided to bring in several inflatable attractions, but they have no clue how to much blow them up. Each attraction needs to be pumped to a precise volume to achieve maximum festival fun!
+
+The attractions are each made up of a combination of several different shapes: cones, spheres and prisms. For example, the giant inflatable duck is made up of two spheres (the body and head) and a cone (the beak).
+
+Each shape has a different calculation for determining volume, so we'll need to create a few functions that will help us figure out the volume of the various inflatable attractions.
+
+In this challenge, we'll need to implement four functions.
+
+The first three will calculate the volume of the individual shapes:
+
+* _sphereVolume()_  will calculate the volume of a sphere given a radius
+* _coneVolume()_ will calculate the volume of a cone given a radius and a height
+* _prismVolume()_ will calculate the volume of a prism given a height, a width, and a depth
+* The fourth function, _totalVolume()_, will receive an array containing the different shapes that make up a single attraction. The totalVolume function should use the previous three functions to calculate the total volume of an attraction.
+
+Don't worry about getting the answers to the perfect precision: our tests will check to see that you're within a correct range.
+
+### Hint: `.map`, `.reduce((a, b) => a + b, 0)` - Sum all the values of an array
+
+Implement the functions one by one. There are tests that will help you ensure that each function is correct.
+
+We can find the formulas for calculating the volume of a sphere, cone, and prism online.
 ```
+const sphere = {
+    type: 'sphere',
+    radius: 2
+}
+
+/*const cone = {
+    type: 'cone',
+    radius: 3,
+    height: 5
+}*/
+
+const prism = {
+    type: 'prism',
+    height: 3,
+    width: 4,
+    depth: 5
+}
+
+const largeSphere = {
+    type: 'sphere',
+    radius: 40
+}
+
+const smallSphere = {
+    type: 'sphere',
+    radius: 10
+}
+
+const cone = {
+    type: 'cone',
+    radius: 3,
+    height: 5
+}
+
+const duck = [
+    largeSphere,
+    smallSphere,
+    cone
+]
+
+const PI = 3.14159 
+
+const sphereVolume = function (radius) {
+    return 4/3 * PI * radius * radius * radius
+}
+
+const coneVolume = function (radius, height) {
+    return PI * radius * radius * ( height / 3 )
+}
+
+const prismVolume = function (height, width, depth) {
+    return height * width * depth
+}
+
+const totalVolume = function (solids) {
+  return(solids.map(i => {
+    if (i.type == "sphere") return sphereVolume(i.radius);
+    if (i.type == "cone") return coneVolume(i.radius, i.height);
+    if (i.type == "prism") return prismVolume(i.height, i.width, i.depth)})
+    .reduce((a, b) => a + b, 0));
+
+}
+console.log(sphereVolume(sphere.radius))              // 33.51029333333333
+console.log(coneVolume(cone.radius, cone.height))     // 47.12385
+console.log(prismVolume(prism.height, prism.width, prism.depth)) // 60
+console.log(totalVolume(duck))                        // 272318.2571833333
 
 ```
 
